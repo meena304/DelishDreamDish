@@ -1,0 +1,66 @@
+// custom variables and override bootstrap variables
+
+//== Colors
+$black:											#000;
+$white:											#fff;
+$clr-1:											#e5e5e5;
+$clr-2:											#898989;
+$clr-3:											#363636;
+$clr-4:											#a53e4c;
+$clr-5:											#dbdde0;
+$clr-6:											#f4f6f9;
+$clr-7:											#b7b7b7;
+$clr-8:											#252525;
+$clr-9:											#292929;
+$clr-10:										#e9e9e9;
+$clr-11:										#b2b2b2;
+$clr-12:										#e8e8e8;
+$clr-13:										#e54e5d;
+$clr-14:										#60b3f3;
+$clr-15:										#82c14f;
+$clr-16:										#ff6f6f;
+$clr-17:										#7f7f7f;
+$clr-18:										#707070;
+
+
+//== Scaffolding
+$text-color:									$clr-2;
+$link-color:									$clr-4;
+
+//== Typography
+$font-family-sans-serif:						'Philosopher', "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-josefin:									'Josefin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-pinyon:									'Pinyon Script', cursive;
+$font-cinzel:									'Cinzel', serif;
+$font-size-base:								14px;
+$line-height-base:								1.714;
+$headings-font-family:							$font-family-sans-serif;
+$headings-font-weight:							700;
+$headings-color:								$black;
+
+
+//== Container sizes
+$container-lg:	1200px;
+
+//== Navbar
+$navbar-height:									1px;
+$navbar-margin-bottom:							0;
+$navbar-border-radius:							0;
+$navbar-padding-horizontal:						0;
+$navbar-padding-vertical:						0;
+$navbar-default-color:							$white;
+$navbar-default-bg:								transparent;
+$navbar-default-border:							transparent;
+$navbar-default-toggle-hover-bg:				transparent;
+$navbar-default-toggle-icon-bar-bg:				$white;
+$navbar-default-toggle-border-color:			transparent;
+
+
+//== Forms
+$input-bg:										$black;
+$input-color:									$black;
+//$input-border:								$clr11;
+$input-border-radius:							0;
+//$input-border-focus:							$clr3;
+$input-color-placeholder:						$black;
+$form-group-margin-bottom:						16px;

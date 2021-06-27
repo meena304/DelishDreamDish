@@ -1,0 +1,3733 @@
+ /*
+Theme Name: Vine Yard HTML Template
+Author: Markhor Themes
+Author URI: https://themeforest.net/user/htmlbeans
+Version: 1
+Description: Base theme for HTML5
+Text Domain: base
+Tags: one-column, two-columns, three-columns
+Theme URI: http://www.htmlbeans.com/html/vineyard/
+*/
+
+
+/*------------------------------------------------------------------
+
+1. import files / import files
+2. Body / body
+3. Btn Primary / .btn-primary
+4. Header / .header
+5. Heading / .heading
+6. Heading2 / .heading2
+7. Heading3 / .heading3
+8. Heading4 / .heading4
+9. Heading5 / .heading5
+10. Heading6 / .heading6
+11. Read More / .read-more
+12. Pagination / .pagination
+13. Wrapper / #wrapper
+14. Header / #header
+15. Cart Dropdown / .cart-dropdown
+16. Cart Dropdown Active / .cart-dropdown-active
+17. Cart Drop Active / .cart-drop-active
+18. Nav Active / .nav-active
+20. Search Active / .search-active
+21. Setting Wrap / .setting-wrap
+22. Widget Cart Wrap / .widget-cart-wrap
+23. Logo / .logo
+24. Nav / #nav
+25. Search Holder / .search-holder
+26. Main / #main
+27. Main Holder / .main-holder
+28. Banner / .banner
+29. Breadcrumbs / .breadcrumbs
+30. Filder List / .filter-list
+31. Feature Sec / .feature-sec
+32. Feature Col / .feature-col
+33. Blog Sec / .blog-sec
+34. Blog Col / .blog-col
+35. Blog Detail / .blog-detail
+36. Socail Network / .socail-network
+37. About Sec / .about-sec
+38. Tomatin Sec / .tomatin-sec
+39. Small Product / .small-product
+40. Event Sec / .event-sec
+41. Shop Sec / .shop-sec
+42. Shop Detail / .shop-detail
+43. Content / #content
+42. Comments Block / .comments-block
+43. Comment Formarea / .comment-formarea
+44. Sidebar / #sidebar
+45. Widget / .widget
+46. Portfolio Sec / .portfolio-sec
+47. Portfolio Col / .portfolio-col
+48. Portfolio Detail / .portfolio-detail
+49. Compare Sec / .compare-sec
+50. Contact Sec / .contact-sec
+51. Team Sec / .team-sec
+52. Team Col / .team-col
+53. Error Sec / .error-sec
+54. Popup Holder / .popup-holder
+55. Popup1 / #popup1
+56. Lightbox Demo / .lightbox-demo
+57. Shopping Cart / .shopping-cart
+58. Cart Table / .cart-table
+59. Cart Widget / .cart-widget
+60. Checout Sec / .checout-sec
+61. Checkout Form / .checkout-form
+62. Loader Holder / .loader-holder
+63. Back Top / #back-top
+64. Footer / #footer
+
+
+-------------------------------------------------------------------*/
+
+
+
+// devices viewport width starts at:
+$breakpoints: (
+	xs-phone: 480px,
+	phone: 640px,
+	tablet: 768px,
+	desktop: 992px,
+	widescreen: 1200px
+);
+ 
+// keywords
+$media-expressions: (
+	'screen': 'screen',
+	'print': 'print',
+	'handheld': 'handheld',
+	'landscape': '(orientation: landscape)',
+	'portrait': '(orientation: portrait)',
+	'retina2x': '(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)',
+	'retina3x': '(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)'
+);
+
+// ligatured operators ≥ ≤
+
+
+/*------------------------------------------------------------------
+1. import files / import files
+-------------------------------------------------------------------*/
+
+//@import 'vendors/include-media';
+
+@import "bootstrap-custom";
+@import "vendors/bootstrap/variables";
+@import "vendors/bootstrap/mixins";
+
+@import 'base/mixins';
+@import 'base/helpers';
+@import url('https://fonts.googleapis.com/css?family=Cinzel:400,700,900|Josefin+Sans:300,300i,400,400i,600,700');
+
+
+/*------------------------------------------------------------------
+2. Body / body
+-------------------------------------------------------------------*/
+body{
+    font-weight: 400;
+    margin: 0;
+}
+a,
+button{
+    transition: all 0.25s linear;
+    &:hover,
+    &:focus,
+    &.active{
+        text-decoration: none;
+        outline: none;
+    }
+}
+.overlay{
+    position: relative;
+    z-index: 1;
+    &:before{
+        @include element(0, 0, 0, 0);
+        opacity: 0.8;
+    }
+}
+.bg-full{
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.bg-parallax{
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.fontbase{ font-family: $font-family-sans-serif; }
+.fontjosefin{ font-family: $font-josefin; }
+.fontpinyon{ font-family: $font-pinyon; }
+.fontcinzel{ font-family: $font-cinzel; }
+.fwBold{ font-weight: 700; }
+.fwNormal{ font-weight: 400; }
+.fwLight{ font-weight: 300; }
+.fwSemi{ font-weight: 600; }
+.bg-light{ background: $clr-6; }
+.bg-black{ background: $black; }
+.bg-white{ background: $white; }
+.bg-grey{ background: $clr-8; }
+.txt-green{ color: $clr-15; }
+.txt-orange{ color: $clr-16; }
+.bdr{ border: 1px solid $clr-1; }
+.bdr-bt{ border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.round{border-radius: 100%;}
+.md-round{border-radius: 3px;}
+.lg-round{border-radius: 45px;}
+.box-shadow{ box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.2); }
+.js-tab-hidden {
+    display:block !important;
+    left:-9999px !important;
+    position: absolute !important;
+    top:-9999px !important;
+}
+.p-label{
+    @include font(11px, 13px);
+    color: $white;
+    padding: 6px 27px 6px 15px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    &:before{
+        @include element(0, 0, auto, auto);
+        width: 0;
+        height: 0;
+        z-index: 0;
+        border-style: solid;
+        border-width: 12px 12px 12px 0;
+        border-color: transparent $white transparent transparent;
+    }
+    &.rightside{
+        right: 0;
+        background: $clr-3;
+        &:before{
+            left: 0;
+            right: auto;
+            border-width: 12px 0 12px 12px;
+            border-color: transparent transparent transparent $white;
+        }
+    }
+}
+/*------------------------------------------------------------------
+3. Btn Primary / .btn-primary
+-------------------------------------------------------------------*/
+.btn-primary{
+    @include font(13px, 16px);
+    color: $clr-3;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 11px 39px;
+    border: 1px solid $clr-3;
+    background: none;
+    letter-spacing: 2.3px;
+    transition: all 0.25s linear;
+    &:hover,
+    &:focus,
+    &.active{ color: $white; }
+    &.active{
+        border-width: 1px;
+        border-style: solid;
+        &:hover{ background: none; }
+    }
+}
+/*------------------------------------------------------------------
+4. Header / .header
+-------------------------------------------------------------------*/
+.header{
+    overflow: hidden;
+    @include font(16px, 26px);
+    color: $clr-2;
+    padding-top: 3px;
+    .title{
+        @include font(36px, 40px);
+        display: block;
+        margin: 0 0 3px;
+        letter-spacing: 7px;
+    }
+    .header-img{
+        position: relative;
+        max-width: 324px;
+        margin: 0 auto;
+        &:before,
+        &:after {
+            position: absolute;
+            top: 50%;
+            content: "";
+            width: 101px;
+            height: 1px;
+            background: $clr-5;
+        }
+        &:before{ left: 0; }
+        &:after{ right: 0; }
+        .img-responsive{
+            max-width:60px;
+            margin: 0 auto;
+        }
+    }
+}
+/*------------------------------------------------------------------
+5. Heading / .heading
+-------------------------------------------------------------------*/
+.heading{
+    @include font(36px, 40px);
+    color: $clr-3;
+    margin: 0 0 32px;
+    letter-spacing: 7px;
+    a{
+        color: $clr-3;
+        transition: all 0.25s linear;
+    }
+}
+/*------------------------------------------------------------------
+6. Heading2 / .heading2
+-------------------------------------------------------------------*/
+.heading2{
+    @include font(18px, 36px);
+    color: $clr-3;
+    font-weight: 400;
+    margin: 0 0 28px;
+    letter-spacing: 1px;
+    word-spacing: 4px;
+    a{
+        color: $clr-3;
+        transition: all 0.25s linear;
+    }
+}
+/*------------------------------------------------------------------
+7. Heading3 / .heading3
+-------------------------------------------------------------------*/
+.heading3{
+    @include font(14px, 18px);
+    color: $clr-2;
+    font-weight: 400;
+    margin: 0 0 10px;
+    letter-spacing: 3px;
+    a{
+        color: $clr-2;
+        transition: all 0.25s linear;
+    }
+}
+/*------------------------------------------------------------------
+8. Heading4 / .heading4
+-------------------------------------------------------------------*/
+.heading4{
+    @include font(22px, 25px);
+    color: $clr-4;
+    margin: 0 0 13px;
+    letter-spacing: 2px;
+    a{
+        color: $clr-2;
+        transition: all 0.25s linear;
+    }
+}
+/*------------------------------------------------------------------
+9. Heading5 / .heading5
+-------------------------------------------------------------------*/
+.heading5{
+    @include font(24px, 27px);
+    color: $clr-3;
+    font-weight: 400;
+    margin: 0 0 54px;
+    letter-spacing: 4px;
+    a{
+        color: $clr-3;
+        transition: all 0.25s linear;
+    }
+    .next{
+        @include font(30px, 35px);
+    }
+}
+/*------------------------------------------------------------------
+10. Heading6 / .heading6
+-------------------------------------------------------------------*/
+.heading6{
+    @include font(30px, 33px);
+    color: $clr-3;
+    font-weight: 400;
+    margin: 0 0 54px;
+    letter-spacing: 3px;
+    a{
+        color: $clr-3;
+        transition: all 0.25s linear;
+    }
+}
+/*------------------------------------------------------------------
+11. Read More / .read-more
+-------------------------------------------------------------------*/
+.read-more{
+    @include font(13px, 15px);
+    color: $clr-2;
+    font-weight: 400;
+    letter-spacing: 2px;
+    .fa{ transition: all 0.25s linear; }
+    &:hover{
+        .fa{ margin: 0 0 0 5px; }
+    }
+}
+.space{
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 460px;
+    z-index: -1;
+}
+/*------------------------------------------------------------------
+12. Pagination / .pagination
+-------------------------------------------------------------------*/
+.pagination{
+    overflow: hidden;
+    margin: 0;
+    padding: 10px 0 0;
+    li{
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .active{ a{ color: $white; } }
+    a{
+        @include size(40px, 40px);
+        color: $clr-3;
+        padding: 8px 0 0;
+        display: block;
+        transition: all 0.25s linear;
+        &:hover{ color: $white; }
+    }
+}
+/*------------------------------------------------------------------
+13. Wrapper / #wrapper
+-------------------------------------------------------------------*/
+#wrapper{ @extend %boxreset; }
+/*------------------------------------------------------------------
+14. Header / #header
+-------------------------------------------------------------------*/
+#header{
+    @extend %clearfix;
+    &.v1{
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        z-index: 5;
+        #nav{
+            ul{ > li{ > a{ color: $white; } } }
+            .dropdownmenu{
+                .dropdowncollist{
+                    a{
+                        color: $clr-2;
+                        &:hover{ background: none; }
+                    }
+                }
+            }
+            .dropdown-menu{ a{ color: $clr-3; } }
+        }
+    }
+    &.wh-clr{
+        margin: 0 0 25px;
+        .setting-wrap,
+        .widget-cart-wrap{
+            > li{ > a{ color: $white; } }
+        }
+        #nav{
+            > ul{
+                > li{
+                    > a{
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+    .header-holder{
+        @extend %clearfix;
+        padding: 44px 61px 43px;
+    }
+    .v2{
+        .setting-wrap{
+            border-left: 1px solid $clr-1;
+            margin: 0 0 0 39px;
+            li{ margin: 0 0 0 52px; }
+        }
+        #nav{
+            padding: 4px 0 0;
+            ul{
+                li{
+                    margin: 0 0 0 70px;
+                    &:first-child{ margin: 0; }
+                }
+            }
+        }
+        .pagenav{
+            float: right;
+            width: calc(100% - 399px);
+            #nav{
+                float: left;
+            }
+        }
+    }
+    .nav-holder{
+        padding: 29px 0 0;
+        @extend %clearfix;
+    }
+    .sticky{
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        z-index: 3;
+        #nav{
+            position: relative;
+            &:before{
+                @include element(-100px, -9999px, 0, -9999px);
+                background: $black;
+            }
+        }
+        .n-logo{ width: 224px; }
+    }
+    .cart-menu{
+        @include font(14px, 17px);
+        width: 294px;
+        overflow: hidden;
+        padding: 19px 22px;
+        li{
+            overflow: hidden;
+            padding: 10px 0;
+        }
+        .img-holder{
+            width: 28%;
+            padding: 23px 8px 23px;
+        }
+        .align-left{
+            width: 72%;
+            position: relative;
+            padding: 9px 0 0 19px;
+        }
+        .heading3{ margin: 0 0 19px; }
+        .price{
+            display: block;
+            word-spacing: 4px;
+            letter-spacing: 2px;
+        }
+        .close{
+            line-height: 18px;
+            color: $clr-3;
+            position: absolute;
+            right: 0;
+            top: 12px;
+        }
+        .total-price{
+            display: block;
+            padding: 30px 0;
+            margin: 10px 0 -2px;
+            border-top-width: 1px;
+            border-top-style: solid;
+            em{
+                @include font(18px, 14px);
+                font-style: normal;
+                letter-spacing: 4px;
+            }
+        }
+        .btn-primary{
+            width: 100%;
+            margin: 0 0 10px;
+        }
+    }
+}
+/*------------------------------------------------------------------
+15. Cart Dropdown / .cart-dropdown
+-------------------------------------------------------------------*/
+.cart-dropdown{
+    position: absolute;
+    left: 5px;
+    top: 46px;
+    border-top-width: 1px;
+    border-top-style: dashed;
+    background: $white;
+    opacity: 0;
+    visibility: hidden;
+    &.right{
+        left: auto;
+        right: 0;
+    }
+}
+/*------------------------------------------------------------------
+16. Cart Dropdown Active / .cart-dropdown-active
+-------------------------------------------------------------------*/
+.cart-dropdown-active{
+    .setting-wrap{
+        .cart-dropdown{
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+/*------------------------------------------------------------------
+17. Cart Drop Active / .cart-drop-active
+-------------------------------------------------------------------*/
+.cart-drop-active{
+    .widget-cart-wrap{
+        .cart-dropdown{
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+/*------------------------------------------------------------------
+18. Nav Active / .nav-active
+-------------------------------------------------------------------*/
+.nav-active{
+    #header{
+        .nav-holder{
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+    }
+}
+/*------------------------------------------------------------------
+20. Search Active / .search-active
+-------------------------------------------------------------------*/
+.search-active{ .search-holder{ display: block; } }
+/*------------------------------------------------------------------
+21. Setting Wrap / .setting-wrap
+-------------------------------------------------------------------*/
+.setting-wrap{
+    line-height: 17px;
+    color: $clr-3;
+    @extend %clearfix;
+    margin: 0;
+    > li{
+        @include font(24px, 27px);
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+        z-index: 1;
+        margin: 0 20px 0 0;
+        > a{
+            color: $clr-3;
+            display: block;
+            transition: all 0.25s linear;
+        }
+    }
+    .setting-drop{
+        @include font(14px, 17px);
+        width: 170px;
+        overflow: hidden;
+        padding: 0 28px 21px;
+        text-align: left;
+    }
+    hr{ margin: 0 -28px 25px; }
+    .account-list{
+        color: $clr-3;
+        overflow: hidden;
+        margin: 0;
+        padding: 25px 0 15px;
+        li{
+            display: block;
+            margin: 0 0 13px;
+        }
+        a{
+            color: $clr-3;
+            transtion: all 0.25s linear;
+        }
+    }
+    .heading3{
+        color: $clr-3;
+        margin: 0 0 13px;
+    }
+    .currency-form{
+        color: $clr-3;
+        overflow: hidden;
+        margin: 0 0 13px;
+        input[type="radio"]{
+            position:fixed;
+            left:0;
+            top:0;
+            opacity:0;
+            z-index: -1;
+        }
+        label {
+            display:block;
+            margin: 0 0 13px;
+        }
+        label{ padding-right: 5px; }
+        .fake-input{
+            display: inline-block;
+            width: 13px;
+            height: 13px;
+            border: 1px solid $clr-3;
+            vertical-align: middle;
+            position: relative;
+            margin: -2px 10px 0 0;
+        }
+        input[type=radio] + .fake-input{border-radius:100%;}
+        input[type="radio"] + .fake-input:before{
+            content:'';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: $clr-3;
+            border-radius:100%;
+            opacity: 0;
+        }
+
+        input[type="radio"]:checked + .fake-input:before{opacity:1;}
+        input[type="radio"]:checked ~ .fake-label{font-weight:bold; color:#f00}
+    }
+    .lang-list{
+        overflow: hidden;
+        margin: 0;
+        padding: 5px 0 0;
+        li{
+            display: inline-block;
+            vertical-align: top;
+            margin: 0 0 0 4px;
+            &:first-child{ margin: 0; }
+        }
+        a{
+            display: block;
+            transtion: all 0.25s linear;
+        }
+    }
+}
+/*------------------------------------------------------------------
+22. Widget Cart Wrap / .widget-cart-wrap
+-------------------------------------------------------------------*/
+.widget-cart-wrap{
+    color: $clr-3;
+    margin: 0;
+    > li{
+        @include font(24px, 27px);
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+        z-index: 1;
+        margin: 0 10px 0 34px;
+        > a{
+            color: $clr-3;
+            display: block;
+            transition: all 0.25s linear;
+        }
+    }
+    .num{
+        @include font(12px, 14px);
+        color: $white;
+        @include size(16px, 16px);
+        display: block;
+        position: absolute;
+        right: -10px;
+        top: -10px;
+        padding: 2px 0 0;
+    }
+}
+/*------------------------------------------------------------------
+23. Logo / .logo
+-------------------------------------------------------------------*/
+.logo{
+    width: 224px;
+    margin: 0 auto;
+}
+/*------------------------------------------------------------------
+24. Nav / #nav
+-------------------------------------------------------------------*/
+#nav{
+    @include font(16px, 18px);
+    font-weight: 400;
+    transition: all 0.5s linear;
+    > ul{
+        margin: 0 auto;
+        > li{
+            display: inline-block;
+            vertical-align: top;
+            margin: 0 0 0 105px;
+            &:first-child{ margin: 0;}
+            &.dropdown{
+                position: relative;
+            }
+            &.hover{
+                z-index: 2;
+                .dropdown-menu,
+                .dropdownmenu{
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+            &.n-logo{ width: 0; }
+            > a{
+                letter-spacing: 3px;
+                padding-bottom: 29px;
+                color: $clr-3;
+                display: block;
+                transition: all 0.25s linear;
+            }
+        }
+    }
+    .dropdownmenu{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+        overflow: hidden;
+        max-width: 1140px;
+        z-index: 2;
+        padding: 51px 27px 50px 66px;
+        background-color: $white;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.25s linear;
+        .dropdowncol{
+            width: 25%;
+            float: left;
+            padding: 0 40px 0 0;
+        }
+        .heading3{
+            margin: 0 0 29px;
+            padding: 0 0 13px;
+            position: relative;
+            &:before{
+                @include element(auto, auto, 0, 0);
+                @include size(50px, 2px);
+                border-bottom: 1px dashed $clr-4;
+                z-index: 0;
+            }
+        }
+        .dropdowncollist{
+            @include font(14px, 16px);
+            color: $clr-2;
+            overflow: hidden;
+            margin: 0;
+            > li{
+                display: block;
+                margin: 0 0 32px;
+                > a{
+                    color: $clr-2;
+                    letter-spacing: 0;
+                    transition: all 0.25s linear;
+                }
+            }
+        }
+    }
+    .dropdown-menu{
+        @include font(14px, 16px);
+        position: absolute;
+        left: 0;
+        top: 100%;
+        overflow: hidden;
+        z-index: 2;
+        color: $clr-3;
+        overflow: hidden;
+        margin: 0;
+        padding: 23px 18px 13px;
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        display: block;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.25s linear;
+        > li{
+            display: block;
+            margin: 0 0 12px;
+            &:first-child{ margin: 0 0 12px; }
+            > a{
+                color: $clr-3;
+                padding: 0;
+                letter-spacing: 0;
+                transition: all 0.25s linear;
+                &:hover{
+                    background: none;
+                }
+            }
+        }
+    }
+}
+/*------------------------------------------------------------------
+25. Search Holder / .search-holder
+-------------------------------------------------------------------*/
+.search-holder{
+    width: 1169px;
+    margin: 0 auto;
+    display: none;
+    transition: all 0.25s linear;
+    position: relative;
+    z-index: 2;
+    &:before{
+        @include element(-9999px, -9999px, -9999px, -9999px);
+        background: rgba(0, 0, 0, 0.7);
+    }
+    .icon{
+        @include font(22px, 22px);
+        color: $clr-2;
+        position: absolute;
+        top: 3px;
+        right: 5px;
+    }
+    .select-form{
+        overflow: hidden;
+        padding: 70px 199px;
+        background: $white;
+        fieldset{ position: relative; }
+        .jcf-select{
+            @include size(35.1%, 60px);
+            float: left;
+            border: none;
+            margin: 0;
+            .jcf-select-text{
+                line-height: 18px;
+                color: $white;
+                font-weight: 700;
+                margin: 20px 35px 0 41px;
+                letter-spacing: 3px;
+            }
+            .jcf-select-opener{
+                background: none;
+                &:before{
+                    @include element(21px, 22px, auto, auto);
+                    content: "\f107";
+                    line-height: 16px;
+                    font-family: "FontAwesome";
+                    color: $white;
+                    z-index: 0;
+                }
+            }
+        }
+        .form-control{
+            @include font(14px, 18px);
+            color: $clr-7;
+            float: left;
+            @include size(64.9%, 60px);
+            padding: 6px 46px 6px 26px;
+            box-shadow: none;
+            outline: none;
+            background: none;
+            border-left: none;
+            letter-spacing: 2px;
+            @include placeholder{ color: $clr-7; }
+        }
+        .sub-btn{
+            @include font(30px, 24px);
+            color: $clr-3;
+            position: absolute;
+            right: 4px;
+            top: 14px;
+            border: none;
+            box-shadow: none;
+            outline: none;
+            background: none;
+        }
+    }
+}
+/*------------------------------------------------------------------
+26. Main / #main
+-------------------------------------------------------------------*/
+#main{ overflow: hidden; }
+/*------------------------------------------------------------------
+27. Main Holder / .main-holder
+-------------------------------------------------------------------*/
+.main-slider{
+    overflow: hidden;
+    margin: 120px 0 0;
+    .slide{
+        @include v-align(950px, middle, after);
+        .b-logo{
+            width: 315px;
+            margin: 0 auto 65px;
+            display: block;
+            opacity: 0;
+            transform: translateY(-80px);
+            transition: all 0.5s linear;
+        }
+        .btn-primary{
+            opacity: 0;
+            transform: translateY(80px);
+            transition: all 0.5s linear;
+        }
+    }
+    .slick-active{
+        .b-logo,
+        .btn-primary{
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .slick-prev,
+    .slick-next{
+        @include size(50px, 50px);
+        text-indent: -9999px;
+        position: absolute;
+        top: 47.4%;
+        z-index: 1;
+        background: none;
+        border: 1px dashed;
+        border-color: rgba(225,225,225,0.4);
+        transition: all 0.25s linear;
+        &:after{
+            @include element(0, auto, auto, 0);
+            text-indent: 0;
+            @include font(19px, 19px);
+            color: $white;
+            letter-spacing: 4px;
+            word-break: break-all;
+            padding: 3px 0 0 5px;
+            text-transform: uppercase;
+            transition: all 0.25s linear;
+        }
+    }
+    .slick-prev{
+        left: 75px;
+        &:after{content: "prev";}
+    }
+    .slick-next{
+        right: 75px;
+        &:after{content: "next";}
+    }
+}
+/*------------------------------------------------------------------
+28. Banner / .banner
+-------------------------------------------------------------------*/
+.banner{
+    margin: 0 75px 4px;
+    z-index: 0;
+    @include v-align(476px, middle, after);
+    &.overlay{
+        &:before{ background: rgba(0, 0, 0, 0.8); }
+    }
+    .heading{
+        color: $white;
+        margin: 0 0 10px;
+    }
+}
+/*------------------------------------------------------------------
+29. Breadcrumbs / .breadcrumbs
+-------------------------------------------------------------------*/
+.breadcrumbs{
+    overflow: hidden;
+    margin: 0;
+    color: $white;
+    letter-spacing: 6px;
+    li{
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 5px 0 0;
+    }
+    a{
+        display: block;
+        color: $white;
+        transition: all 0.25s linear;
+    }
+}
+/*------------------------------------------------------------------
+30. Filder List / .filter-list
+-------------------------------------------------------------------*/
+.filter-list{
+    overflow: hidden;
+    margin: 0 0 54px;
+    color: $clr-3;
+    letter-spacing: 3px;
+    li{
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 0 0 33px;
+        &:first-child{ margin: 0; }
+    }
+    a{
+        color: $clr-3;
+        display: block;
+        transition: all 0.25s linear;
+    }
+}
+/*------------------------------------------------------------------
+31. Feature Sec / .feature-sec
+-------------------------------------------------------------------*/
+.feature-sec{
+    padding-top: 96px;
+    padding-bottom: 96px;
+    .header{ margin: 0 0 54px; }
+    .feature-col{ margin: 0 0 65px; }
+    .btn-primary{ margin: 0 0 3px; }
+    #feature-holder{
+        .grid-sizer{ width: 25%; }
+    }
+}
+/*------------------------------------------------------------------
+32. Feature Col / .feature-col
+-------------------------------------------------------------------*/
+.feature-col{
+    overflow: hidden;
+    position: relative;
+    &:hover{
+        .txt-wrap{
+            opacity: 0;
+            visibility: hidden;
+        }
+        .img-holder{
+            &:before{ animation: animate 1s linear forwards; }
+            &:after{ animation: animate2 1s linear forwards; }
+        }
+        .social-network{
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+    }
+    &.feature-col2{
+        &:hover{
+            .txt-wrap{
+                opacity: 1;
+                visibility: visible;
+            }
+            .price{ display: none; }
+        }
+        .heading3{ margin: 0 0 15px; }
+        .img-holder{
+            width: 27.5%;
+            padding: 16px 20px 18px;
+            margin: 0 0 29px;
+        }
+        .txt-wrap{
+            width: 72.5%;
+            padding: 16px 0 0 25px;
+        }
+        .rating-list{
+            padding: 0;
+            margin: 0 0 27px;
+        }
+        .price{ letter-spacing: 1px; }
+        .social-network{
+            left: 126px;
+            bottom: 35px;
+            padding: 0;
+            li{
+                margin: 0 0 0 13px;
+            }
+        }
+    }
+    .img-holder{
+        width: 100%;
+        padding: 40px 20px 32px;
+        border: 1px solid $clr-1;
+        margin: 0 0 26px;
+        position: relative;
+        z-index: 1;
+        transition: all 0.25s linear;
+        &:before,
+        &:after{
+            @include element(-1px, auto, auto, -1px);
+            @include size(0, 0);
+            background: transparent;
+            border: 1px solid transparent;
+        }
+        img{
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+    .p-label{
+        position: absolute;
+        top: 23px;
+        left: 0;
+        padding: 7px 24px 4px 13px;
+        &.rightside{
+            left: auto;
+            padding: 7px 13px 4px 24px;
+        }
+    }
+    .txt-wrap{ overflow: hidden; }
+    .footer{ overflow: hidden; }
+    .rating-list{
+        @include font(12px, 14px);
+        color: $clr-3;
+        font-weight: 400;
+        overflow: hidden;
+        margin: 0;
+        padding: 4px 0 0;
+        li{
+            float: left;
+            margin: 0 2px 0 0;
+        }
+        a{
+            color: $clr-3;
+            display: block;
+            transition: all 0.25s linear;
+        }
+    }
+    .price{
+        font: 18px/22px 'Cinzel', serif;
+        font-weight: 700;
+        letter-spacing: 2px;
+    }
+    .social-network{
+        margin: 0;
+        padding: 9px 0 0;
+        left: 0;
+        bottom: 0;
+        opacity: 0;
+        width: 100%;
+        overflow: hidden;
+        position: absolute;
+        visibility: hidden;
+        transition: all 0.25s linear;
+        transform: translateY(100%);
+        li{
+            float: left;
+            margin: 0 0 0 23px;
+            &:first-child{ margin: 0; }
+        }
+        a{
+            @include size(50px, 50px);
+            display: block;
+            color: $black;
+            @include font(20px, 50px);
+            border-radius: 50%;
+            border: 1px solid $clr-1;
+            transition: all 0.25s linear;
+            &:hover{
+                color: $white;
+                border: 1px solid;
+                transform: rotateZ(360deg);
+            }
+        }
+    }
+}
+@keyframes animate{
+    0%{
+        @include size(0, 0);
+        border-top-color: $clr-4;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+    }
+    50%{
+        @include size(100%, 0);
+        border-top-color: $clr-4;
+        border-right-color: $clr-4;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+    }
+    100%{
+        @include size(100%, 100%);
+        border-top-color: $clr-4;
+        border-right-color: $clr-4;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+    }
+}
+@keyframes animate2{
+    0%{
+        @include size(0, 0);
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: $clr-4;
+    }
+    50%{
+        @include size(0, 100%);
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: $clr-4;
+        border-left-color: $clr-4;
+    }
+    100%{
+        @include size(100%, 100%);
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: $clr-4;
+        border-left-color: $clr-4;
+    }
+}
+/*------------------------------------------------------------------
+33. Blog Sec / .blog-sec
+-------------------------------------------------------------------*/
+.blog-sec{
+    padding-top: 96px;
+    padding-bottom: 70px;
+    .header{ margin: 0 0 64px; }
+    .blog-col{ margin: 0 0 27px; }
+    .item-col{
+        width: 66.66%;
+        float: left;
+        padding: 0 15px;
+        &.col2{
+            width: 33.33%;
+            padding: 0 15px;
+            float: left;
+        }
+    }
+}
+.grid-sizer{ width: 33.33%; }
+/*------------------------------------------------------------------
+34. Blog Col / .blog-col
+-------------------------------------------------------------------*/
+.blog-col{
+    overflow: hidden;
+    &:hover{
+        .img-holder{ img{ transform: scale(1.3); } }
+    }
+    &.style2{
+        .time{
+            padding: 0 72px 0 0;
+            .day{
+                left: auto;
+                right: -10px;
+            }
+        }
+        .txt-holder{ padding: 20px 0 0; }
+    }
+    &.style3{
+        margin: 0 0 50px;
+        .txt-holder{ padding: 76px 0 0 49px; }
+        .time{ margin: 0 0 34px; }
+        p{ margin: 0 0 31px; }
+    }
+    &.style4{
+        .txt-holder{ padding: 76px 49px 0 0; }
+        .time{
+            margin: 0 0 34px;
+            padding: 0 72px 0 0;
+            .day{
+                left: auto;
+                right: -10px;
+            }
+        }
+        .img-holder{
+            text-align: right;
+            img{
+                display: inline-block;
+                vertical-align: top;
+            }
+        }
+        p{ margin: 0 0 31px; }
+    }
+    &.style5{
+        margin: 0 0 50px;
+        .img-holder{ width: 54.2%; }
+        .txt-holder{
+            padding: 60px 0 0 27px;
+            width: 45.8%;
+        }
+        .time{ margin: 0 0 34px; }
+        p{ margin: 0 0 31px; }
+    }
+    &.style6{
+        margin: 0 0 23px;
+        &.v2{
+            .txt-holder{ padding: 18px 0; }
+        }
+        .img-holder{ width: 100%; }
+        .txt-holder{
+            width: 100%;
+            padding: 29px;
+        }
+        .heading5{
+            line-height: 36px;
+            letter-spacing: 5px;
+            margin: 0 0 12px;
+        }
+        .heading2{
+            letter-spacing: 3px;
+            word-spacing: 3px;
+            margin: 0 0 10px;
+        }
+    }
+    .img-holder{
+        width: 47.2%;
+        float: left;
+        overflow: hidden;
+        img{ transition: .3s ease-in-out; }
+    }
+    .txt-holder{
+        @include font(14px, 26px);
+        color: $clr-2;
+        width: 52.8%;
+        float: left;
+        padding: 20px 20px 0 0;
+        overflow: hidden;
+    }
+    .time{
+        @include font(30px, 32px);
+        font-weight: 400;
+        display: block;
+        position: relative;
+        z-index: 1;
+        letter-spacing: 6px;
+        margin: 0 0 25px;
+        .day{
+            @include font(72px, 80px);
+            color: $clr-5;
+            font-weight: 700;
+            position: absolute;
+            left: 49px;
+            top: -25px;
+            z-index: -1;
+            letter-spacing: 12px;
+        }
+    }
+    .comment-nav{
+        @include font(12px, 17px);
+        color: $clr-7;
+        font-style: italic;
+        letter-spacing: 2px;
+        overflow: hidden;
+        margin: 0 0 34px;
+        li{
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 3px;
+        }
+        a{
+            color: $clr-7;
+            transition: all 0.25s linear;
+        }
+    }
+}
+/*------------------------------------------------------------------
+35. Blog Detail / .blog-detail
+-------------------------------------------------------------------*/
+.blog-detail{
+    overflow: hidden;
+    &.style2{
+        .img-holder{ margin: 0 0 32px; }
+        .header{
+            padding: 0;
+            .wrap{ width: 76.1%; }
+        }
+        p{ margin: 0 0 21px; }
+        .comments-block{
+            .commment-area{
+                .txt-holder{
+                    width: 88.8%;
+                    padding-top: 3px;
+                }
+            }
+            .commment-onelevel{
+                .txt-holder{ width: 87.7%; }
+            }
+        }
+        .widget{ .img-holder{ margin: 0; } }
+    }
+    .blog-holder{
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+    .img-holder{
+        width: 100%;
+        margin: 0 0 39px;
+    }
+    .header{
+        overflow: hidden;
+        @include font(14px, 26px);
+        margin: 0;
+        .time{
+            @include font(30px, 35px);
+            font-weight: 400;
+            float: left;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 6px;
+            padding: 68px 0 0;
+            margin: 0 123px 0 0;
+            .day{
+                @include font(72px, 39px);
+                color: $clr-1;
+                font-weight: 700;
+                position: absolute;
+                left: 48px;
+                bottom: 0;
+                z-index: -1;
+                letter-spacing: 16px;
+            }
+        }
+        .wrap{
+            width: 79.2%;
+            float: left;
+            .heading6{ margin: 0 0 16px; }
+        }
+    }
+    .heading4{
+        color: $clr-3;
+        margin: 0 0 19px;
+    }
+    p{ margin: 0 0 27px; }
+    .blockquote{
+        @include font(18px, 30px);
+        overflow: hidden;
+        border: 1px solid;
+        padding: 22px 28px 23px 33px;
+        color: $clr-2;
+        margin: 0 0 37px;
+        q{
+            quotes: none;
+            display: block;
+            margin: 0 0 16px;
+        }
+        cite{
+            padding: 20px 0 0;
+            display: block;
+            @include font(14px, 16px);
+            font-style: normal;
+            letter-spacing: 2.7px;
+            position: relative;
+            color: $clr-8;
+            &:before{
+                @include element(0, auto, auto, 0);
+                @include size(31px, 2px);
+                background: $clr-8;
+            }
+            .fa{
+                @include font(58px, 62px);
+                margin: -46px 0 0;
+                color:rgba($clr-1, 0.1);
+            }
+        }
+    }
+    .footer{
+        border-bottom: 1px solid $clr-10;
+        overflow: hidden;
+        margin: 0 0 40px;
+        .tags-list{
+            @include font(11px, 13px);
+            overflow: hidden;
+            margin: 0 0 21px;
+            float: left;
+            li{
+                float: left;
+                margin: 0 11px 0 0;
+            }
+            a{
+                padding: 7px 38px;
+                color: $clr-2;
+                @include alinment(inline-block, middle);
+                border: 1px solid $clr-12;
+                letter-spacing: 1px;
+                @extend %transition;
+                &:hover{ color: $white; }
+            }
+        }
+        .social-network{
+            overflow: hidden;
+            @include font (14px, 16px);
+            margin: 0;
+            padding: 15px 0 0;
+            float: right;
+            li{ margin: 0 0 0 29px; }
+            a{  
+                color: $clr-11; 
+                display: block;
+                @extend %transition;
+            }
+        }
+    }
+}
+/*------------------------------------------------------------------
+36. Socail Network / .socail-network
+-------------------------------------------------------------------*/
+.social-network{
+    line-height: 16px;
+    color: $clr-2;
+    overflow: hidden;
+    margin: 0;
+    li{
+        margin: 0 56px 0 0;
+        float: left;
+    }
+    a{
+        color: $clr-2;
+        display: block;
+        transition: all 0.25s linear;
+    }
+}
+/*------------------------------------------------------------------
+37. About Sec / .about-sec
+-------------------------------------------------------------------*/
+.aboutus-sec{
+    padding: 96px 0;
+    &.v2{
+        .image-block{
+            margin: 0;
+            box-shadow: none;
+        }
+        .header{ margin: 0 0 50px; }
+    }
+    .image-block{
+        overflow: hidden;
+        margin: -199px 0 0;
+        box-shadow: 0 0 10px 0 rgba(217,217,217,0.5);
+    }
+    .header{
+        font: 14px/26px 'Philosopher', sans-serif;
+        color: $clr-2;
+        margin: 0 0 22px;
+        .header-img{ margin: 0 auto 30px; }
+    }
+    .heading{ margin: 0 0 25px; }
+    .signature-image{
+        display: block;
+        width: 110px;
+        margin: 0 auto 63px;
+    }
+    .heading2{
+        color: $clr-2;
+        margin: 0 0 15px;
+        letter-spacing: 4px;
+        font-style: italic;
+    }
+    .sub-title{
+        @include font(24px, 27px);
+        color: $clr-3;
+        display: block;
+        font-weight: 700;
+    }
+    .l-bdr{ border-left: 1px solid $clr-5; }
+    .social-network{
+        @include font(14px, 17px);
+        li{
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 15px;
+            float: none;
+        }
+        a{
+            @include size(30px, 30px);
+            color: $white;
+            padding: 5px 0 0;
+            border-radius: 50%;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            border: 1px solid $clr-3;
+            &:before{
+                @include element(0, 0, auto, auto);
+                @include size(100%, 100%);
+                border-radius: 50%;
+                transition: all 0.4s linear;
+                background-color: $clr-3;
+            }
+            &:hover{
+                color: $clr-3;
+                &:before{
+                    top: 100%;
+                    background-color: $white;
+                }
+            }
+        }
+    }
+    .contact-holder{
+        overflow: hidden;
+        padding-top: 37px;
+        padding-bottom: 24px;
+    }
+}
+/*------------------------------------------------------------------
+38. Tomatin Sec / .tomatin-sec
+-------------------------------------------------------------------*/
+.tomatin-sec{
+    overflow: hidden;
+    min-height: 709px;
+    padding: 96px 0;
+    position: relative;
+    .header{
+        p{ margin: 0 0 28px; }
+        .header-img{ margin: 0 auto 36px; }
+    }
+    .heading{margin:0 0 34px; }
+    .btn-primary{ padding: 11px 34px 12px; }
+    .deal-slider{
+        overflow: hidden;
+        width: 371px;
+        position: absolute;
+        right: -285px;
+        top: 6px;
+        padding: 54px 0 0;
+        .img-holder{
+            img{ margin: 0 auto; }
+            .p-label{
+                @include font(18px, 25px);
+                float: right;
+                padding: 7px 36px 8px 15px;
+                letter-spacing: 4px;
+                margin: -93px 90px 0 0;
+                &:before{ border-width: 20px 20px 20px 0; }
+            }
+        }
+        .slick-dots{
+            overflow: hidden; 
+            list-style: none;
+            padding: 72px 0 15px;
+            margin: 0;
+            text-align: center;
+            li{
+                display: inline-block;
+                vertical-align: middle;
+                margin: 0 13px;
+            }
+            button{
+                position: relative;
+                text-indent: -9999px;
+                padding: 0;
+                border: none;
+                width:10px;
+                height:10px;
+                border:1px solid #b7b7b7;
+                border-radius: 100%;
+                &:after{
+                    position: absolute;
+                    content: "";
+                    left: 0;
+                    right: 0;
+                    bottom:0;
+                    background: transparent;
+                }
+            }
+        }
+    }
+    .comming-timer{
+        overflow: hidden;
+        margin: 0 0 59px;
+        .countdown-section{
+            display: inline-block;
+            vertical-align: top;
+            padding: 11px 13px 11px;
+            border:1px solid $clr-5;
+            border-radius:5px;
+            margin: 0 29px;
+            width:96px;
+        }
+        .countdown-period{
+            @include font(14px, 51px);
+            color: $clr-2;
+            margin: 0;
+            display: block;
+            font-family: $font-josefin;
+            font-weight: 700;
+        }
+        .countdown-amount{
+            @include font(30px, 63px);
+            font-family: $font-cinzel;
+            font-weight: 700;
+            color: $clr-3;
+            margin: 0 auto;
+            width: 40px;
+            display: block;
+            text-align: center;
+            letter-spacing: 7px;
+            border-bottom: 1px dashed;
+        }
+    }
+}
+/*------------------------------------------------------------------
+39. Small Product / .small-product
+-------------------------------------------------------------------*/
+.small-product{
+    padding-top: 96px;
+    padding-bottom: 71px;
+}
+/*------------------------------------------------------------------
+40. Event Sec / .event-sec
+-------------------------------------------------------------------*/
+.event-sec{
+    overflow: hidden;
+    padding: 96px 0;
+    .header{
+        margin: 0 0 62px;
+        .header-img{
+            opacity: 0.3;
+            &:after,
+            &:before{ background: rgba($white, 0.3); }
+        }
+    }
+    .heading{
+        margin: 0 0 34px;
+        color: $white;
+    }
+    .event-holder{ 
+        overflow: hidden;
+        padding: 0 0 53px;
+        margin: 0 0 5px;
+        border-top: 1px dashed rgba($white, 0.3);
+        border-bottom: 1px dashed rgba($white, 0.3);
+         .holder{
+            overflow: hidden;
+            padding: 51px 0 0;
+            margin: 0 0 -9px;
+         }
+        .alignleft{
+            width: 300px;
+            overflow: hidden;
+            padding: 28px 0 0;
+            position: relative;
+            z-index: 1;
+            float: left;
+        }
+        .day-time{
+            @include font(18px, 22px);
+            color: $clr-7;
+            display: block;
+            letter-spacing: 3px;
+        }
+        .time{
+            @include font(36px, 40px);
+            font-weight: 400;
+            display: block;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 6px;
+            margin: 0 0 33px;
+            .day{
+                @include font(100px, 39px);
+                color: rgba($white, 0.10);
+                font-weight: 700;
+                position: absolute;
+                left: 39px;
+                top: 0;
+                z-index: -1;
+                letter-spacing: 22px;
+            }
+        }
+        .price{
+            @include font(36px, 40px);
+            letter-spacing: 4px;
+            float: right;
+            text-align: right;
+            padding: 28px 0 0;
+            span{
+                @include font(14px, 18px);
+                color: $clr-7;
+                display: block;
+                padding: 15px 0 0;
+                letter-spacing: 0;
+            }
+        }
+        .txt-holder{
+            @include font(16px, 36px);
+            font-family: $font-josefin;
+            color: $clr-7;
+            overflow: hidden;
+            padding: 30px 117px;
+            .heading5{
+                color: $white;
+                margin: 0 0 7px;
+                letter-spacing: 5px;
+                word-spacing: 3px;
+                a{ color: $white; }
+            }
+            span{
+                display: block;
+                letter-spacing: 2px;
+                word-spacing: 1px;
+            }
+        }
+    }
+}
+/*------------------------------------------------------------------
+41. Shop Sec / .shop-sec
+-------------------------------------------------------------------*/
+.shop-sec{
+    padding-top: 96px;
+    padding-bottom: 70px;
+    .feature-col{ margin: 0 0 64px; }
+}
+/*------------------------------------------------------------------
+42. Shop Detail / .shop-detail
+-------------------------------------------------------------------*/
+.shop-detail{
+    overflow: hidden;
+    padding-top: 100px;
+    &.left-sidebar{
+        .product-slider{ padding: 136px 180px 100px; }
+    }
+    .slider{
+        overflow: hidden;
+        margin: 0 0 -2px;
+    }
+    .product-slider{
+        overflow: hidden;
+        width: 74.4%;
+        float: left;
+        padding: 136px 280px 100px;
+        border: 1px solid $clr-1;
+        margin: 0 0 44px;
+        text-align: center;
+        img{ @include alinment(inline-block, middle); }
+    }
+    .pagg-slider{
+        width: 25.6%;
+        float: left;
+        margin: 0;
+        padding: 0 0 0 30px;
+        li{
+            width: 100% !important;
+            float: none;
+            border: 1px solid $clr-1;
+            margin: 0 0 45px;
+            padding: 37px 50px 0px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            transition: all 0.25s linear;
+            &:before,
+            &:after{
+                @include element(-1px, auto, auto, -1px);
+                @include size(0, 0);
+                background: transparent;
+                border: 1px solid transparent;
+            }
+            &:hover{
+                &:before{ animation: animate 1s linear forwards; }
+                &:after{ animation: animate2 1s linear forwards; }
+            }
+            img{ @include alinment(inline-block, middle); }
+            &:nth-child(2n){ padding: 40px 50px 31px; }
+            &:nth-child(3n){ padding: 0 27px 8px; }
+        }
+        .slick-track{ width: 100% !important; }
+    }
+    .heading5{
+        margin: 0 0 9px;
+        letter-spacing: 5px;
+    }
+    .rating-list{
+        margin: 0 0 19px;
+        overflow: hidden;
+        li{ float: left; }
+    }
+    .price{
+        @include font(24px, 27px);
+        letter-spacing: 5px;
+        margin: 0 0 26px;
+        display: block;
+    }
+    p{ margin: 0 0 29px; }
+    .footer{
+        overflow: hidden;
+        margin: 0 0 49px;
+        border-bottom: 1px solid $clr-1;
+        .f-holder{
+            padding: 20px 0;
+            border-top: 1px solid $clr-1;
+            overflow: hidden;
+        }
+        .color-list{
+            overflow: hidden;
+            margin: 0;
+            float: left;
+            li{
+                display: inline-block;
+                vertical-align: middle;
+                margin: 0 26px 0 0;
+            }
+            .heading3{
+                margin: 0 41px 0 0;
+                letter-spacing: 0;
+            }
+            a{
+                @include size(14px, 14px);
+                display: block;
+                &.red{ background: $clr-13; }
+                &.black{ background: $black; }
+                &.blue{ background: $clr-14; }
+                &.green{ background: $clr-15; }
+                &.yellow{ background: $clr-16; }
+            }
+        }
+        .size-list{
+            overflow: hidden;
+            margin: 0;
+            float: right;
+            li{
+                display: inline-block;
+                vertical-align: middle;
+                margin: 0 0 0 41px;
+            }
+            .heading3{ margin: 0 -10px 0 0; }
+            a{
+                @include font(12px, 14px);
+                @include size(30px, 30px);
+                display: block;
+                text-align: center;
+                color: $clr-3;
+                background: $clr-6; 
+                margin: 0 auto;
+                padding: 8px 0 0; 
+                @extend %transition;
+                &:hover{ color: $white; }
+            }
+        }
+        .tag-list{
+            @include font(12px, 14px);
+            overflow: hidden;
+            margin: -6px 0 0;
+            float: left;
+            li{
+                display: inline-block;
+                vertical-align: middle;
+                margin: 0 17px 0 0;
+            }
+            .title{
+                @include font(30px, 24px);
+                color: $clr-3;
+                margin: 0 28px 0 0;
+            }
+            a{
+                display: block;
+                color: $clr-2;
+                letter-spacing: 2px;
+            }
+        }
+        .social-network{
+            overflow: hidden;
+            margin: 0;
+            float: right;
+            li{
+                display: inline-block;
+                vertical-align: middle;
+                margin: 0 0 0 37px;
+            }
+            .heading3{
+                color: $clr-3;
+                margin: 0 3px 0 0;
+                letter-spacing: 0;
+            }
+            a{
+                display: block;
+                color: $clr-2;
+            }
+        }
+    }
+    .holder{
+        overflow: hidden;
+        margin: 0 0 49px;
+    }
+    .jcf-number{
+        overflow: hidden;
+        height:50px;
+        float: left;
+        margin: 0 45px 0 0;
+        input{
+            @include font(13px, 50px);
+            text-align: center;
+            padding: 0;
+            width: 133px;
+            border-color: $clr-1;
+        }
+        .jcf-btn-inc,
+        .jcf-btn-dec{
+            background: none;
+            top: 15px;
+            @include font(18px, 18px);
+            text-indent: -9999px; 
+            width: 10px;
+            &:before{
+                top: 0;
+                left: 0;
+                background: none;
+                border:none;
+                font-family: 'FontAwesome';
+                margin: 0;
+                text-indent: 0;
+            }
+        }
+        .jcf-btn-dec{
+            left: 15px;
+            &:before{
+                content:"\f104";
+                display: block;
+            }
+        }
+        .jcf-btn-inc{
+            right:16px;
+            &:before{
+                content:"\f105";
+                display: block;
+            }
+        }
+    }
+    .social-networks{
+        margin: 0;
+        float: left;
+        overflow: hidden;
+        li{
+            float: left;
+            margin: 0 0 0 25px;
+            &:first-child{ margin: 0; }
+        }
+        a{
+            @include size(50px, 50px);
+            display: block;
+            color: $black;
+            @include font(20px, 50px);
+            border-radius: 50%;
+            border: 1px solid $clr-1;
+            transition: all 0.25s linear;
+            &:hover{
+                color: $white;
+                transform: rotateZ(360deg);
+            }
+        }
+    }
+    .accordion{
+        overflow: hidden;
+        margin: 0;
+        padding: 0 0 81px;
+        border-bottom: 1px solid $clr-1;
+        li{
+            border: 1px solid $clr-1;
+            margin: 0 0 18px;
+            padding: 14px 28px;
+        }
+        .active{
+            a{
+                border-bottom: 1px solid $clr-1;
+                padding: 0 0 17px;
+            }
+        }
+        a{ display: block; }
+        .heading3{
+            margin: 0;
+            color: $clr-3;
+        }
+        strong{ color: $clr-3; }
+        .slide{
+            padding: 11px 0 3px;
+            p{ margin: 0 0 1px; }
+        }
+    }
+}
+/*------------------------------------------------------------------
+43. Content / #content
+-------------------------------------------------------------------*/
+#content{
+    padding: 0;
+    .jcf-select{
+        @include size(270px, 40px);
+        border: 1px solid $clr-6;
+        margin: 0 27px 60px 0;
+        .jcf-select-text{
+            @include font(14px, 25px);
+            margin: 6px 35px 0 20px;
+        }
+        .jcf-select-opener{
+            background: none;
+            &:before{
+                position: absolute;
+                left: 0;
+                top: 12px;
+                content: "\f107";
+                @include font(12px, 14px);
+                color: $clr-3;
+                font-family: "FontAwesome";
+            }
+        }
+    }
+    .viewFilterLinks{
+        @include font(22px, 30px);
+        float: right;
+        li{
+            float: left;
+            margin: 0 0 0 10px;
+        }
+        .active{ a{ color: $white; } }
+        a{
+            @include size(40px, 40px);
+            color: $clr-1;
+            padding: 10px 9px;
+            border: 1px solid $clr-6;
+            display: block;
+            &:hover{ color: $white; }
+        }
+    }
+}
+/*------------------------------------------------------------------
+42. Comments Block / .comments-block
+-------------------------------------------------------------------*/
+.comments-block{
+    overflow: hidden;
+    padding: 0 0 9px;
+    margin: 0 0 39px;
+    border-bottom: 1px solid $clr-10;
+    .heading2{
+        margin: 0 0 25px;
+        letter-spacing: 3px;
+    }
+    .commment-area {
+        overflow: hidden;
+        padding: 7px 0 0;
+        margin: 0 0 37px;
+        .img {
+            width: 68px;
+            float: left;
+            overflow: hidden;
+            margin: 6px 28px 0 0;
+        }
+        .txt-holder{
+            width: 90%;
+            padding: 0 0 0 30px;
+            float: left;
+            position: relative;
+            &:before{
+                @include element(0, auto, auto, 0);
+                width:1px;
+                height:97px;
+                background: $clr-10;
+            }
+        }
+        .header{
+            margin: 0 0 9px;
+            .btn-primary{
+                float: right;
+                margin: 6px 0 0;
+                padding: 11px 30px;
+            }
+        }
+        .comment-date{
+            @include alinment(inline-block, middle);
+            time{
+                @include font(12px, 15px);
+                font-weight: 400;
+                display: block;
+                color: $clr-7;
+                letter-spacing: 2.6px;
+                margin: 0 0 7px;
+            }
+        }
+        p {margin: 0;}
+    }
+    .commment-onelevel{
+        padding: 0 0 0 98px;
+        overflow: hidden;
+        .img{
+          width: 68px;
+          margin: 0 26px 0 0;
+        }
+        .txt-holder{
+          width: 89%;
+          padding: 0 0 0 30px;
+        }
+        .header{ padding-top: 0; }
+    }
+}
+/*------------------------------------------------------------------
+43. Comment Formarea / .comment-formarea
+-------------------------------------------------------------------*/
+.comment-formarea{
+    overflow: hidden;
+    margin: 0 0 30px;
+    .heading2{ letter-spacing: 3px; }
+    .commentform{
+        overflow: hidden;
+        .form-group{ margin-bottom: 22px; }
+        .form-control{
+            background: none;
+            border: none;
+            color: $clr-2;
+            border-bottom: 1px solid $clr-1;
+            box-shadow: none;
+            padding: 0 0 14px;
+            height: auto;
+            @include placeholder{ color: $clr-2; }
+        }
+        textarea{
+            min-height: 79px;
+            resize: none;
+            margin: 0 0 38px;
+        }
+        .btn-primary{
+            margin: 0 0 0 15px;
+            padding: 11px 34px;
+            @include alinment(inline-block, middle);
+            &:hover{
+                color:$clr-3;
+                background: none;
+            }
+        }
+    }
+}
+/*------------------------------------------------------------------
+44. Sidebar / #sidebar
+-------------------------------------------------------------------*/
+#sidebar{ overflow: hidden; }
+/*------------------------------------------------------------------
+45. Widget / .widget
+-------------------------------------------------------------------*/
+.widget{
+    overflow: hidden;
+    margin: 0 0 48px;
+    &.style2{
+        .category-list{ margin: 0 0 41px; }
+        .feature-list{
+            .img-holder{
+                width:70px;
+                height: 93px;
+                border:1px solid #f0f1f2;
+                margin: 4px 0 0;
+                padding: 11px 0 0;
+                img{ margin: 0 auto; }
+            }
+            time{
+                font-size: 18px;
+                line-height: 20px;
+                color:#a53e4c;
+                letter-spacing: 3.5px;
+            }
+        }
+    }
+    &.category-widget{ .heading2{ margin: 0; } }
+    &.size-widget{ .heading2{ margin: 0 0 14px; } }
+    .heading2{
+        letter-spacing: 3.5px;
+        position: relative;
+        margin: 0 0 19px;
+        &:after{
+            @include element(50%, 0, auto, auto);
+            @include size(100px, 1px);
+            border:1px dashed;
+            transform: translateY(-50%);
+        }
+    }
+    .img-holder{ margin: 0; }
+    .category-list{
+        overflow: hidden;
+        margin: 0;
+        font-style: italic;
+        li{
+            padding: 13px 0 12px;
+            border-bottom: 1px dashed $clr-1;
+        }
+        a{
+            color: $clr-3;
+            display: block;
+        }
+    }
+    .price-range{
+        overflow: hidden;
+        .progress{
+            margin: 0 0 27px;
+            display: block;
+        }
+        .text{
+            color: $clr-3;
+            display: inline-block;
+            vertical-align: middle;
+            .price{
+                letter-spacing: 3px;
+                padding: 0 9px 0 6px; 
+            }
+        }
+        .btn-primary{ padding: 11px 29px; }
+    }
+    .color-list{
+        overflow: hidden;
+        margin: -3px 0 -30px;
+        li{
+            overflow: hidden;
+            margin: 0 0 22px;
+            padding: 0 0 0 32px;
+            position: relative;
+            &:before{
+                @include element(3px, auto, auto, 2px);
+                @include size(13px, 13px);
+                background: red;
+                border-radius: 50%;
+            }
+            &.blue{ &:before{background: blue;} }
+            &.black{ &:before{background: black;} }
+            &.green{ &:before{background: green;} }
+            &.yellow{ &:before{background: yellow;} }
+        }
+        .heading3{ letter-spacing: 0; }
+        a{
+            color: $clr-3;
+            display: block;
+            transition: all 0.25s linear;
+            &:hover{ color: $clr-4; }
+        }
+    }
+    .size-list{
+        @include font(11px, 13px);
+        overflow: hidden;
+        margin: 0 0 12px;
+        li{
+            float: left;
+            margin: 0 0 0 30px;
+            &:first-child{ margin: 0; }
+        }
+        a{
+            @include size(30px, 30px);
+            color: $clr-3;
+            background: $clr-6;
+            display: block;
+            border-radius: 100%;
+            padding: 8px 0 0;
+            &:hover{ color: $white;  }
+        }
+    }   
+    .feature-list{
+        overflow: hidden;
+        &.feature2{
+            li{
+                &:hover{
+                    .img-holder{ img{ transform: scale(1.3); } }
+                }
+            }
+            .img-holder{
+                padding: 0;
+                border: none;
+                overflow: hidden;
+                img{ transition: .3s ease-in-out; }
+            }
+            .heading3{
+                line-height: 24px;
+                margin: 0 0 19px;
+                a{ color: $clr-3; }
+            }
+        }
+        li{
+            overflow: hidden;
+            margin: 0 0 19px;
+            &:hover{
+                .img-holder{
+                    &:before{ animation: animate 1s linear forwards; }
+                    &:after{ animation: animate2 1s linear forwards; }
+                }
+            }
+        }
+        .img-holder{
+            width: 26%;
+            padding: 12px 10px;
+            text-align: center;
+            border: 1px solid $clr-1;
+            position: relative;
+            z-index: 1;
+            transition: all 0.25s linear;
+            &:before,
+            &:after{
+                @include element(-1px, auto, auto, -1px);
+                @include size(0, 0);
+                background: transparent;
+                border: 1px solid transparent;
+            }
+            img{
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+        .txt-holder{
+            width: 74%;
+            padding: 0 0 0 29px;
+            .heading3{ margin: 0 0 14px; }
+            .heading2{
+                letter-spacing: 5px;
+                &:after{ display: none; }
+            }
+        }
+        .rating-list{
+            @include font(12px, 14px);
+            overflow: hidden;
+            margin: 0 0 10px;
+            li{
+                float: left;
+                margin: 0 2px 0 0;
+            }
+            a{
+                color: $clr-3;
+                transition: all 0.25s linear;
+            }
+        }
+        .time{
+            @include font(12px, 14px);
+            color: $clr-7;
+            font-style: italic;
+            letter-spacing: 2px;
+            display: block;
+        }
+    }
+}
+/*------------------------------------------------------------------
+46. Portfolio Sec / .portfolio-sec
+-------------------------------------------------------------------*/
+.portfolio-sec{
+    padding-top: 96px;
+    padding-bottom: 96px;
+    &.style2{
+        .item-col{
+            width: 66.66%;
+            float: left;
+            padding: 0 15px;
+            &.col2{
+                width: 33.33%;
+                padding: 0 15px;
+                float: left;
+            }
+        }
+    }
+}
+#feature-holder{
+    .col2{
+        .portfolio-col{margin: 0 0 40px; }
+    }
+    .portfolio-col{
+        margin: 0 0 31px;
+        &.v2{ .wrap{ padding: 20px; } }
+    }
+}
+/*------------------------------------------------------------------
+47. Portfolio Col / .portfolio-col
+-------------------------------------------------------------------*/
+.portfolio-col{
+    overflow: hidden;
+    margin: 0 0 59px;
+    @include font(12px, 16px);
+    color: $clr-7;
+    &:hover{
+        .img-holder{
+            &:before{ transform: scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,120%,0); }
+            img{
+                opacity: 0.6;
+                transform: scale3d(1,1,1);
+            }
+        }
+    }
+    &.v2{
+        &:hover{
+            .wrap{ transform: translateY(0); }
+        }
+        .wrap{
+            overflow: hidden;
+            background: rgba($white, 0.8);
+            padding: 21px 100px;
+            margin: -160px 0 30px;
+            transform: translateY(300px);
+            @extend %transition;
+        }
+    }
+    &.v3{
+        position: relative;
+        &:hover{
+            .img-holder{
+                &:before{ display: none; }
+            }
+            .wrap{ transform: translateY(0); }
+        }
+        .wrap{
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            background: rgba($white, 0.8);
+            padding: 70px 0;
+            transform: translateY(-100%);
+            @extend %transition;
+        }
+        .content{
+            overflow: hidden;
+            margin: 0 0 35px;
+        }
+        .social-network{
+            li{
+                float: none;
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+    }
+    .img-holder{
+        margin: 0 0 21px;
+        position: relative;
+        &:before {
+            @include element(0, auto, auto, 0);
+            @include size(100%, 100%);
+            background: rgba(0,0,0,0.5);
+            transition: transform 0.6s;
+            transform: scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,-100%,0);
+        }
+        img{
+            opacity: 0.95;
+            transition: opacity 0.35s, transform 0.35s;
+            transform: scale3d(1.05,1.05,1);
+        }
+    }
+    .heading2{
+        margin: 0 0 5px;
+        letter-spacing: 3px;
+    }
+    p{
+        margin: 0;
+        letter-spacing: 2px;
+    }
+    .social-network{
+        margin: 0;
+        overflow: hidden;
+        padding: 4px 0 0;
+        li{
+            float: left;
+            margin: 0 0 0 28px;
+            &:first-child{ margin: 0; }
+        }
+        a{
+            @include size(50px, 50px);
+            display: block;
+            color: $black;
+            @include font(20px, 50px);
+            border-radius: 50%;
+            border: 1px solid $clr-1;
+            transition: all 0.25s linear;
+            &:hover{
+                color: $white;
+                transform: rotateZ(360deg);
+            }
+        }
+    }
+}
+/*------------------------------------------------------------------
+48. Portfolio Detail / .portfolio-detail
+-------------------------------------------------------------------*/
+.portfolio-detail{
+    overflow: hidden;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    .portfolio-slider{
+        padding: 3px 0 0;
+        overflow: hidden;
+        .slick-prev,
+        .slick-next{
+            @include size(50px, 50px);
+            text-indent: -9999px;
+            position: absolute;
+            top: 50%;
+            z-index: 1;
+            background: none;
+            border: 1px dashed;
+            border-color: rgba(225,225,225,0.4);
+            transition: all 0.25s linear;
+            transform: translateY(-50%);
+            &:after{
+                @include element(0, auto, auto, 0);
+                text-indent: 0;
+                @include font(19px, 19px);
+                color: $white;
+                letter-spacing: 4px;
+                word-break: break-all;
+                padding: 3px 0 0 5px;
+                text-transform: uppercase;
+                transition: all 0.25s linear;
+            }
+        }
+        .slick-prev{
+            left: 20px;
+            &:after{content: "prev";}
+        }
+        .slick-next{
+            right: 20px;
+            &:after{content: "next";}
+        }
+    }
+    .pagg-slider{
+        padding: 22px 0 128px;
+        margin: 0; 
+        li{
+            float: left;
+            img{ border: 1px solid; }
+        }
+    }
+    .holder{
+        overflow: hidden;
+        color: $clr-2;
+        line-height: 26px;
+        .heading5{
+            letter-spacing: 2px;
+            margin: 0 0 12px;
+        }
+        p{ margin: 0 0 55px; }
+    }
+    .client-details{
+        margin: 0;
+        color: $clr-2;
+        padding: 51px 0 0;
+        letter-spacing: 1px;
+        border-top: 1px solid $clr-1;
+        li{
+            margin: 0 0 10px;
+            strong{ color: $clr-3; }
+        }
+        .btn-primary{
+            margin: 40px 0 0;
+            padding: 11px 20px;
+        }
+    }
+}
+/*------------------------------------------------------------------
+49. Compare Sec / .compare-sec
+-------------------------------------------------------------------*/
+.compare-sec{
+    overflow: hidden;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    .compare-table{
+        overflow: hidden;
+        border: 1px solid $clr-1;
+        > tbody{
+            > tr{
+                > td,
+                > th{ vertical-align: middle }
+            }
+        }
+        tr{ border-bottom: 1px solid $clr-1; }
+        th,
+        td{
+            overflow: hidden;
+            border-left: 1px solid $clr-1;
+            border-top: none;
+            &:first-child{ border:none; }
+        }
+        th{ padding: 35px 15px 25px; }
+        td{
+            padding: 16px 25px;
+        }
+        .social-network{
+            margin: 0;
+            li{
+                @include alinment(inline-block, middle);
+                float: none;
+                margin: 0 5px;
+            }
+            a{
+                @include size(50px, 50px);
+                border: 1px solid $clr-1;
+                padding: 15px 0 0;
+                display: block;
+                color: $black;
+                @include font(20px, 22px);
+                transition: all 0.25s linear;
+                &:hover{ color: $white; }
+            }
+        }
+        .heading3{
+            width: 241px;
+            display: block;
+            margin: 0;
+            color: $clr-3;
+        }
+        .heading2{
+            letter-spacing: 3px;
+            margin: 0;
+        }
+        .title{
+            @include font(16px, 18px);
+            display: block;
+            color: $clr-3;
+            letter-spacing: 3px;
+        }
+        .rating-list{
+            @include font(12px, 14px);
+            overflow: hidden;
+            margin: 0;
+            li{
+                display: inline-block;
+                vertical-align: middle;
+                margin: 0;
+            }
+            a{ color: $clr-3; }
+        }
+        .size{
+            @include font(12px, 14px);
+            @include size(30px, 30px);
+            display: block;
+            background: $clr-6; 
+            margin: 0 auto;
+            padding: 8px 0 0; 
+            @extend %transition;
+            &:hover{ color: $white; }
+        }
+        .circle{
+            @include size(12px, 12px);
+            display: block;
+            background-color: $clr-13;
+            margin: 0 auto;
+            &.blue{ background: $clr-14; }
+            &.black{ background: $clr-8; }
+        }
+        p{
+            margin: 0 0 16px;
+            padding: 14px 0 10px;
+        }
+        .wrap{
+            overflow: hidden;
+            width: 241px;
+            margin: -6px 0 6px;
+            .img-holder{
+                @include size(100px, 133px);
+                margin: 0 auto 16px; 
+                padding: 14px 0;
+                border: 1px solid $clr-1;
+                img{ margin: 0 auto; }
+            }
+        }
+    }
+}
+/*------------------------------------------------------------------
+50. Contact Sec / .contact-sec
+-------------------------------------------------------------------*/
+.contact-sec{
+    overflow: hidden;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    .contact-list{
+        @include font(16px, 24px);
+        letter-spacing: 3px;
+        overflow: hidden;
+        margin: 0 0 55px;
+        color: $clr-3;
+        border-bottom: 1px solid $clr-1;
+        li{
+            width: 33.33%;
+            padding: 0 15px;
+            float: left;
+            margin: 0 0 26px;
+        }
+        .fa{
+            @include font(26px, 28px);
+            display: block;
+            margin: 0 0 21px;
+        }
+        a{
+            color: $clr-3;
+            display: block;
+        }
+    }
+    .header{
+        margin: 0 0 55px;
+        .title{ margin: 0 0 5px; }
+        .heading{ margin: 0 0 36px; }
+        .header-img{ margin: 0 auto 37px; }
+        p{ margin: 0 0 30px; }
+    }
+    .heading2{
+        margin: -8px 0 20px;
+        letter-spacing: 3px;
+    }
+    .social-network{
+        li{
+            float: none;
+            @include alinment(inline-block, middle);
+        }
+    }
+    .contact-form{
+        overflow: hidden;
+        .form-control{
+            background: none;
+            box-shadow: none;
+            border: none;
+            border-bottom: 1px solid $clr-1;
+            height: auto;
+            padding: 0 0 13px;
+            margin: 0 0 22px;
+            color: $clr-2;
+            @include placeholder{ color: $clr-2; }
+        }
+        textarea.form-control{
+            min-height: 82px;
+            resize: none;
+        }
+        .btn-primary{
+            margin: 38px 0 0;
+            padding: 11px 29px; 
+            letter-spacing: 3px;
+            &:hover{
+                background: none;
+                color: $clr-3; 
+                border-color: $clr-3;
+            }
+        }
+    }
+}
+/*------------------------------------------------------------------
+51. Team Sec / .team-sec
+-------------------------------------------------------------------*/
+.team-sec{
+    overflow: hidden;
+    padding-top: 5px;
+    padding-bottom: 60px;
+    .header{
+        margin: 0 0 63px;
+        .heading{ margin: 0 0 30px; }
+    }
+}
+/*------------------------------------------------------------------
+52. Team Col / .team-col
+-------------------------------------------------------------------*/
+.team-col{
+    position: relative;
+    overflow: hidden;
+    &:hover{
+        .social-icons{
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+    }
+    .img-holder{
+        width: 100%;
+        position: relative;
+        padding-right: 69px;
+    }
+    .social-icons{
+        @include font (18px, 20px);
+        position: absolute;
+        right: 20px;
+        top: 0;
+        overflow: hidden;
+        z-index: 1;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-100%);
+        transition: all 0.25s linear;
+        li{ margin: 0 0 10px; }
+        a{
+            @include size(40px, 40px);
+            background: $clr-17;
+            color: $white;
+            padding-top: 14px;
+            display: block;
+        }
+    }
+    .txt-wrap{
+        overflow: hidden;
+        padding: 27px 28px; 
+    }
+    .heading4{
+        letter-spacing: 4px;
+        padding-bottom: 11px; 
+        position: relative;
+        z-index: 1;
+        color: $clr-3;
+        margin: 0 0 22px;
+        &:after{
+            @include element(auto,auto, 0, 3px);
+            @include size(39px, 2px);
+            background: $clr-4;
+        }
+    }
+    .desination{
+        font-style: italic;
+        @include font(11px, 13px);
+        color: $clr-2;
+        letter-spacing: 2px;
+        display: block;
+    }
+}
+/*------------------------------------------------------------------
+53. Error Sec / .error-sec
+-------------------------------------------------------------------*/
+.error-sec{
+    overflow: hidden;
+    padding-top: 189px;
+    padding-bottom: 96px;
+    @include font(18px, 30px);
+    color: $clr-2;
+    h2{
+        @include font(30px, 36px);
+        color: $clr-3;
+        margin: 0 0 127px;
+        letter-spacing: 6px;
+        position: relative;
+        &:before{
+            @include element(34px, auto, auto, 50%);
+            content: "404";
+            font-size: 400px;
+            font-weight: 700;
+            letter-spacing: 160px;
+            transform: translateX(-45%);
+            color: $clr-10;
+        }
+    }
+    p{
+        letter-spacing: 3.4px;
+        margin: 0 0 54px;
+    }
+    .error-form{
+        width: 570px;
+        margin: 0 auto 52px;
+        position: relative;
+        .form-control{
+            @include font(14px, 17px);
+            border: none;
+            border-bottom: 1px solid $clr-4;
+            outline: none;
+            color: $clr-2;
+            padding: 3px 50px 17px 19px;
+            background: none;
+            letter-spacing: 3px;
+            box-shadow: none;
+            @include placeholder{ color: $clr-2; }
+        }
+        .sub-btn{
+            @include font(26px, 28px);
+            position: absolute;
+            right: 17px;
+            top: -9px;
+            background: none;
+            border: none;
+            color: $clr-3;
+            padding: 0;
+        }
+    }
+    .btn-holder{
+        overflow: hidden;
+        .btn-primary{
+            padding: 11px 43px;
+            margin: 0 30px 0 0;
+        }
+    }
+}
+/*------------------------------------------------------------------
+54. Popup Holder / .popup-holder
+-------------------------------------------------------------------*/
+.popup-holder {
+    position: relative;
+    overflow: hidden;
+    height: 0;
+}
+/*------------------------------------------------------------------
+55. Popup1 / #popup1
+-------------------------------------------------------------------*/
+#popup1{
+    &.lightbox-demo{
+        width: 301px;
+        padding: 26px 27px 22px;
+    }
+}
+/*------------------------------------------------------------------
+56. Lightbox Demo / .lightbox-demo
+-------------------------------------------------------------------*/
+.lightbox-demo{
+    padding: 10px 0 0;
+    position: relative;
+    background: $white;
+    &.newsletter-form{ width: 602px; }
+    &.product{
+        width: 1170px;
+        padding: 40px;
+        overflow-x: auto;
+        .heading5{
+            margin: 0 0 20px;
+            letter-spacing: 5px;
+        }
+        form{
+            overflow: hidden;
+            margin: 0 0 40px;
+        }
+    }
+    .heading2{
+        margin: 0 0 13px;
+        letter-spacing: 4px;
+        word-spacing: 6px;
+    }
+    .heading5{ margin: 0 0 40px; }
+    .img-holder{
+        width:100%;
+        margin: 0 0 23px;
+    }
+    .txt{
+        display: block;
+        color: $clr-2;
+        margin: 0 0 30px;
+        letter-spacing: 2px;
+    }
+    .email-form{
+        width: 350px;
+        margin: 0 auto 30px;
+        position: relative;
+        .form-control{
+            background: none;
+            border: none;
+            border-bottom: 1px solid $black;
+            padding: 10px 40px 4px 0;
+            height: auto;
+            box-shadow: none;
+            color: $clr-2;
+            @include placeholder{ color: $clr-2; }
+        }
+        .fa{
+            position: absolute;
+            right: 0;
+            top: 16px;
+            padding: 0;
+            background: none;
+            border: none;
+            color: $clr-4;
+        }
+    }
+    .login-form{
+        overflow: hidden;
+        margin: 0 0 25px;
+        .form-group{
+            margin: 0 0 44px;
+            overflow: hidden;
+        }
+        .form-control{
+            @include font(18px, 20px);
+            background: none;
+            box-shadow: none;
+            border:none;
+            border-bottom: 1px solid $clr-5;
+            padding: 6px 0 15px;
+            height: auto;
+            color: $clr-2;
+            @include placeholder{ color: $clr-2; }
+        }
+        .btn-primary{ padding: 11px 35px; }
+    }
+    .wrap {
+        overflow: hidden;
+        a{
+            font-size: 12px;
+            color: $clr-2;
+        }
+    }
+    .slider{
+        width: 50%;
+        float: left;
+    }
+    .txt-holder{
+        width: 50%;
+        float: left;
+        padding: 80px 0 0 30px;
+    }
+    .product-slider{
+        overflow: hidden;
+        width: 74%;
+        padding: 60px 120px;
+        border: 1px solid $clr-1;
+        text-align: center;
+        @include alinment(inline-block, top);
+        img{ @include alinment(inline-block, middle); }
+    }
+    .pagg-slider{
+        width: 25%;
+        margin: 0;
+        padding: 0 30px 0 0;
+        @include alinment(inline-block, top);
+        li{
+            width: 100% !important;
+            float: none;
+            border: 1px solid $clr-1;
+            margin: 0 0 15px;
+            padding: 20px 40px;
+            text-align: center;
+            img{ @include alinment(inline-block, middle); }
+        }
+        .slick-track{ width: 100% !important; }
+    }
+    .rating-list{
+        margin: 0 0 25px;
+        overflow: hidden;
+        li{ float: left; }
+    }
+    .price{
+        @include font(24px, 27px);
+        letter-spacing: 5px;
+        margin: 0 0 40px;
+        display: block;
+        del{
+            @include font(20px, 25px);
+            margin: 0 15px 0 0;
+        }
+    }
+    p{ margin: 0 0 29px; }
+    .social-network{
+        @include font(16px, 20px);
+        overflow: hidden;
+        margin: 0;
+        li{
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 20px 0 0;
+        }
+        a{
+            display: block;
+            color: $clr-2;
+        }
+    }
+    .jcf-number{
+        overflow: hidden;
+        height: 40px;
+        float: left;
+        margin: 0 45px 0 0;
+        input{
+            @include font(13px, 50px);
+            text-align: center;
+            padding: 0;
+            width: 133px;
+            color: $clr-3;
+            background: none;
+            border-color: $clr-1;
+        }
+        .jcf-btn-inc,
+        .jcf-btn-dec{
+            background: none;
+            top: 10px;
+            @include font(18px, 18px);
+            text-indent: -9999px; 
+            width: 10px;
+            &:before{
+                top: 0;
+                left: 0;
+                background: none;
+                border:none;
+                font-family: 'FontAwesome';
+                margin: 0;
+                text-indent: 0;
+            }
+        }
+        .jcf-btn-dec{
+            left: 15px;
+            &:before{
+                content:"\f104";
+                display: block;
+            }
+        }
+        .jcf-btn-inc{
+            right:16px;
+            &:before{
+                content:"\f105";
+                display: block;
+            }
+        }
+    }
+}
+/*------------------------------------------------------------------
+57. Shopping Cart / .shopping-cart
+-------------------------------------------------------------------*/
+.shopping-cart{
+    overflow: hidden;
+    padding-top: 80px;
+    padding-bottom: 50px;
+    .table-responsive{ margin: 0 0 43px; }
+    &.left-sidebar{
+        .cart-table{
+            th,
+            td{
+                width: 128px;
+                &:nth-child(2){width:238px;}
+                &:nth-child(3){width:115px;}
+                &:nth-child(4){width:160px;}
+                &:nth-child(5){width:129px;}
+            }
+            th{
+                padding: 0 0 20px 19px;
+                letter-spacing: 3px;
+                line-height: 17px;
+                &.wrap{ padding: 3px 0 16px 10px; }
+            }
+            .price{
+                font-size: 14px;
+                letter-spacing: 2px;
+            }
+            .jcf-number{
+                .jcf-btn-inc,
+                .jcf-btn-dec{
+                    &:before{ @include font(14px, 16px); }
+                }
+            }
+            .color-code{ margin: 0 60px 0 0; }
+        }
+    }
+}
+/*------------------------------------------------------------------
+58. Cart Table / .cart-table
+-------------------------------------------------------------------*/
+.cart-table{
+    margin: 0 0 61px;
+    thead{
+        tr{
+            overflow: hidden;
+            display: block;
+            border-bottom: 2px solid $clr-3;
+        }
+    }
+    tbody{tr{border-bottom:1px solid $clr-1;}}
+    th,
+    td{
+        width:185px;
+        &:nth-child(2){width:408px;}
+        &:nth-child(3){width:168px}
+        &:nth-child(4){width:202px;}
+        &:nth-child(5){width:207px;}
+    }
+    th{
+        padding: 7px 0 23px 20px;
+        float: left;
+        letter-spacing: 2px;
+        &.wrap{ padding:7px 0 15px 22px; }
+    }
+    td{
+        @include alinment(inline-block, middle);
+        padding: 20px 0;
+        margin: 0 0 0 -4px;
+        &:first-child{ margin:0; }
+    }
+    .fa-close{
+        font-size: 16px;
+        color: $clr-3;
+        @include size(29px, 29px);
+        border: 1px solid $clr-1;
+        padding-top: 6px;
+        margin: -3px 0 0;
+        float: right;
+        &:hover{ color: $white; }
+    }
+    .product-img{
+        width: 100px;
+        padding: 17px 36px 17px;
+        border: 1px solid $clr-1;
+        position: relative;
+        transition: all 0.25s linear;
+        img{
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+    .color-code{
+        position: relative;
+        letter-spacing: 3px;
+        margin: 0 108px 0 0;
+        &:before{
+            @include element(6px, -26px, auto, auto);
+            @include size(13px, 13px);
+            background: yellow;
+            border-radius: 50%;
+        }
+    }
+    .size-code{
+        letter-spacing: 3px;
+        a{
+            @include size(30px, 30px);
+            color: $white;
+            background: $clr-4;
+            display: inline-block;
+            vertical-align: middle;
+            border-radius: 100%;
+            padding: 3px 0 0;
+        }
+    }
+    h3{
+        @include font(16px, 18px);
+        color: $clr-3;
+        letter-spacing: 3px;
+        margin: 0 0 6px;
+        a{ color: $clr-3; }
+    }
+    .content-holder{ .content{ overflow: hidden; } }
+    .jcf-number{
+        overflow: hidden;
+        height:50px;
+        float: left;
+        margin: 0 45px 0 0;
+        input{
+            @include font(13px, 50px);
+            text-align: center;
+            padding: 0;
+            width: 133px;
+            border-color: $clr-1;
+        }
+        .jcf-btn-inc,
+        .jcf-btn-dec{
+            background: none;
+            top: 15px;
+            @include font(18px, 18px);
+            text-indent: -9999px; 
+            width: 10px;
+            &:before{
+                top: 0;
+                left: 0;
+                background: none;
+                border:none;
+                font-family: 'FontAwesome';
+                margin: 0;
+                text-indent: 0;
+            }
+        }
+        .jcf-btn-dec{
+            left: 15px;
+            &:before{
+                content:"\f104";
+                display: block;
+            }
+        }
+        .jcf-btn-inc{
+            right:16px;
+            &:before{
+                content:"\f105";
+                display: block;
+            }
+        }
+    }
+    .price{
+        @include font(18px, 22px);
+        letter-spacing: 4px;
+    }
+}
+/*------------------------------------------------------------------
+59. Cart Widget / .cart-widget
+-------------------------------------------------------------------*/
+.cart-widget{
+    margin: 0 0 30px;
+    color: $clr-3;
+    .heading3{
+        color: $clr-3;
+        padding-bottom: 26px;
+        border-bottom: 2px solid $clr-2; 
+        margin: 0 0 21px;   
+    }
+    p{ margin: 0 0 24px; }
+    .shipping-form{
+        .form-group{
+            margin: 0 0 19px;
+            overflow: hidden;
+        }
+        label{ padding-top: 8px;  }
+        .jcf-select{
+            @include size(199px, 40px);
+            border-color: $clr-1;
+            margin: 0;
+            float: right;
+            .jcf-select-text{
+                margin: 8px 35px 0 27px;
+                color: $clr-2;
+            }
+            .jcf-select-opener{
+                background: none;
+                &:after{
+                    position:absolute;
+                    top:50%;
+                    content:"\f078";
+                    z-index: 1;
+                    font-family: FontAwesome;
+                    transform: translateY(-50%);
+                    color:$clr-2;
+                    right: 13px;
+                    font-size: 11px;
+                }
+            }
+        }
+        .btn-primary{ margin: 21px 0 0; }
+    }
+    .subscribe-form{
+        overflow: hidden;
+        .form-control{
+            width: 201px;
+            border: none;
+            border-bottom: 1px solid $clr-1;
+            background: none;
+            box-shadow: none;
+            float: left;
+            margin: 0 27px 0 0;
+            height: auto;
+            padding: 8px 0; 
+            color: $clr-2;
+        }
+        .btn-primary{ padding: 11px 26px; }
+    }
+    .cart-totel{
+        margin: 0 0 17px;
+        color: $clr-8;
+        padding: 3px 0 0;
+        border-bottom: 1px solid $clr-1;
+        li{
+            padding: 0 51px;
+            text-align: left;
+            margin: 0 0 27px;
+        }
+        .heading2{
+            float: right;
+            margin: 0;
+            line-height: 24px;
+            letter-spacing: 4px;
+        }
+    }
+    .txt{
+        @include font(12px, 22px);
+        color: $clr-18;
+        display: block;
+        margin: 0 0 34px;
+    }
+}
+/*------------------------------------------------------------------
+60. Checout Sec / .checout-sec
+-------------------------------------------------------------------*/
+.checout-sec{
+    padding-top: 90px;
+    padding-bottom: 90px;
+    .heading3{
+        padding: 0 0 26px;
+        margin: 0 0 29px;
+        border-bottom: 2px solid $clr-3;
+    }
+    .cart-totel{
+        border: none;
+        li{
+            padding: 0 0 6px;
+            margin: 0 0 29px;
+            border-bottom: 1px solid $clr-1;
+            &.bdr-b{ border-color: $clr-3; }
+        }
+    }
+    .currency-form{
+        color: $clr-3;
+        overflow: hidden;
+        margin: 0 0 13px;
+        input[type="radio"]{
+            position:fixed;
+            left:0;
+            top:0;
+            opacity:0;
+            z-index: -1;
+        }
+        label {
+            display:block;
+            margin: 0 0 13px;
+        }
+        label{ padding-right: 5px; }
+        .fake-input{
+            display: inline-block;
+            width: 13px;
+            height: 13px;
+            border: 1px solid $clr-3;
+            vertical-align: middle;
+            position: relative;
+            margin: -2px 10px 0 0;
+        }
+        input[type=radio] + .fake-input{border-radius:100%;}
+        input[type="radio"] + .fake-input:before{
+            content:'';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: $clr-3;
+            border-radius:100%;
+            opacity: 0;
+        }
+        input[type="radio"]:checked + .fake-input:before{opacity:1;}
+        input[type="radio"]:checked ~ .fake-label{font-weight:bold; color:#f00}
+        .btn-primary{ width: 100%; }
+    }
+}
+/*------------------------------------------------------------------
+61. Checkout Form / .checkout-form
+-------------------------------------------------------------------*/
+.checkout-form{
+    overflow: hidden;
+    .form-group{
+        overflow: hidden;
+        margin: 0 0 20px;
+        &.wrap{margin: 0 0 4px;}
+        &.mar{padding-top: 0;}
+        &.wrap2{
+            label{
+                padding-top: 0;
+                width:100%;
+            }
+        }
+    }
+    label{
+        width:200px;
+        float: left;
+        padding-top: 16px;
+        margin: 0;
+        color: $clr-3;
+    }
+    .form-control{
+        @include size(570px, auto);
+        float: left;
+        background: none;
+        box-shadow:none;
+        border:none;
+        color: $clr-2;
+        padding: 0 0 4px;
+        border-bottom: 1px solid $clr-1;
+        @include placeholder{ color: $clr-2; }
+    }
+    .jcf-select{
+        @include size(570px, 29px);
+        float: left;
+        color: $clr-2;
+        border:none;
+        border-bottom:1px solid $clr-1;
+        .jcf-select-text{margin: 0;}
+        .jcf-select-opener{
+            background: none;
+            &:after{
+                @include element(50%, 7px,auto,auto);
+                z-index: 1;
+                content:"\f078";
+                font-family: FontAwesome;
+                transform: translateY(-50%);
+                font-size: 10px;
+            }
+        }
+    }
+    .wrap{
+        padding-top: 21px;
+        input{margin: 0 0 18px;}
+        span{padding-left:25px; }
+        p{margin: 0;}
+    }
+    textarea{
+        width:100%;
+        max-height:44px;
+        resize:none;
+    }
+}
+/*------------------------------------------------------------------
+62. Loader Holder / .loader-holder
+-------------------------------------------------------------------*/
+.loader-holder{
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.9);
+    .block{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+    }
+}
+/*------------------------------------------------------------------
+63. Back Top / #back-top
+-------------------------------------------------------------------*/
+#back-top{
+    @include font(13px, 16px);
+    @include size(26px, 26px);
+    padding: 3px 0 0 5px;
+    color: $clr-4;
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+    border: 1px solid $clr-4;
+    transition: all 0.25s ease;
+}
+/*------------------------------------------------------------------
+64. Footer / #footer
+-------------------------------------------------------------------*/
+#footer{
+    overflow: hidden;
+    &.v2{
+        overflow: hidden;
+        .heading3{ color: $clr-2; }
+        .tags-list{ a{ border-color: $clr-1; } }
+        .footer-nav{ border-color: $clr-1; }
+        .footer-aside{ padding: 17px 30px 19px; }
+    }
+    &.v3{
+        overflow: hidden;
+        .heading3{ color: $clr-2; }
+        .tags-list{
+            a{ border-color: $clr-1; }
+        }
+        .footer-nav{ border-color: $clr-1; }
+    }
+    .footer-aside{ padding: 17px 75px 19px; }
+    .mar-bt{ margin-bottom: 43px; }
+    .social-network{
+        float: left;
+        padding: 6px 0 0;
+    }
+    .payment-img{ float: right; }
+    .footer-holder{
+        overflow: hidden;
+        padding: 110px 0 100px;
+    }
+    .logo{ margin: -10px 0 20px; }
+    .heading3{
+        color: $white;
+        margin: 0 0 31px;
+    }
+    .contact-list{
+        line-height: 37px;
+        color: $clr-2;
+        overflow: hidden;
+        margin: 0;
+        li{
+            display: block;
+            margin: 0 0 -2px;
+        }
+        a{
+            color: $clr-2;
+            transition: all 0.25s linear;
+        }
+    }
+    .f-nav{
+        line-height: 16px;
+        color: $clr-2;
+        overflow: hidden;
+        margin: 0;
+        li{
+            display: block;
+            margin: 0 0 20px;
+        }
+        a{
+            color: $clr-2;
+            transition: all 0.25s linear;
+        }
+    }
+    .tags-list{
+        @include font(12px, 14px);
+        color: $clr-2;
+        overflow: hidden;
+        margin: 0;
+        letter-spacing: 2px;
+        li{
+            float: left;
+            margin: 0 7px 10px 0;
+        }
+        a{
+            color: $clr-2;
+            padding: 7px 24px;
+            display: block;
+            border: 1px solid $clr-9;
+            transition: all 0.25s linear;
+            &:hover{ color: $white; }
+        }
+    }
+    .footer-nav{
+        @include font(12px, 14px);
+        color: $clr-2;
+        overflow: hidden;
+        margin: 0 0 20px;
+        padding: 0 0 20px;
+        letter-spacing: 2px;
+        border-bottom: 1px solid $clr-9;
+        li{
+            display: inline-block;
+            vertical-align: middle;
+            padding: 0 27px 0 22px;
+            border-left: 1px solid $clr-9;
+            &:first-child{ border-left: 0; }
+        }
+        a{
+            color: $clr-2;
+            display: block;
+            transition: all 0.25s linear;
+        }
+    }
+    .copyright{
+        @include font(12px, 14px);
+        color: $clr-2;
+        letter-spacing: 2px;
+        p{ margin: 0; }
+        a{
+            transition: all 0.25s linear;
+            &:hover{ color: $white; }
+        }
+    }
+}
