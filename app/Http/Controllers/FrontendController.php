@@ -72,6 +72,15 @@ class FrontendController extends Controller
 
     }
 
+    public function search_item(Request $a)
+    {
+    // print_r($a->all());
+    $master = Category::all();
+    $category = Category::all();
+    $dish = Dish::where('dish_name', 'like' , '%' . $a->input('quary') .'%')->get(); 
+    return view('frontend.search_item',compact('dish','master','category'));
+    }
+
 
     public function add_to_cart(Request $a)
     {

@@ -17,9 +17,7 @@ use Illuminate\Support\Facades\Route;
     // return view('welcome');
 // });
 
-// Route::get('googleLogin', function () {
-//     return view('frontend.googleLogin');
-// });
+
 Route::get('auth/google', 'UserController@redirectToGoogle');
 Route::get('auth/google/callback', 'UserController@handleGoogleCallback'); 
 
@@ -125,9 +123,8 @@ Route::get('user/checkout','UserController@checkout');
 Route::post('registerusers','UserController@registerusers');
 Route::match(['get', 'post'], '/confirm/{code}','UserController@confirmAccount');
 
-// Route::get('search', 'UserController@index')->name('search');
-Route::get('search', 'ProductController@index')->name('search');
-Route::get('autocomplete', 'UserController@autocomplete')->name('autocomplete');
+
+Route::get('/search','FrontendController@search_item');
 
 
 // ResetPasswordController

@@ -1143,10 +1143,10 @@ button.active {
   position: absolute;
   content: "";
   z-index: -1;
-  left: -9999px;
+  /*left: -9999px;
   top: -9999px;
   bottom: -9999px;
-  right: -9999px;
+  right: -9999px;*/
   background: rgba(0, 0, 0, 0.7);
 }
 

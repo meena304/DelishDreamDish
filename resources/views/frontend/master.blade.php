@@ -101,6 +101,8 @@
 					 ?>
 					
 					<ul class="list-unstyled widget-cart-wrap pull-right">
+						<li><a href="#popup1" class="lightbox"><i class="icon-search" style="color: white;"></i></a></li>
+
 						
 						@guest
                             <li><a href="{{url('user_login')}}" class=""><i class="icon-user"></i></a></li>
@@ -124,6 +126,7 @@
                                    
                                
                         @endguest
+
 						<li>
 							<a href="javascript:void(0);" class="cart-drop-opener"><i class="icon-cart"></i> <span class="num round fontjosefin text-center">
 								@if(Auth::check()) 
@@ -139,6 +142,7 @@
 							<div class="cart-dropdown right">
 								<!-- Cart Menu of the page -->
 								<ul class="list-unstyled cart-menu">
+
 									@if(Auth::check())
 
 									    @if($cart->count()>0)
@@ -156,6 +160,7 @@
 											<a href="javascript:void(0);" class="close"><i class="fa fa-times"></i></a>
 										</div>
 									</li>
+
 									<?php $totalamount = $totalamount+($cart_data->dish_price*$cart_data->dish_quantity);
 									
 									?>
@@ -344,8 +349,29 @@
 
   <div class="popup-holder">
 
+  	<!-- search pop -->
+  	<div id="popup1" class="search-holder">
+  		<!-- search holder of the page -->
+
+    <!-- select form of the page -->
+    <form action="{{url('/search')}}" method="get" class="select-form">
+    	<fieldset>
+    		<select id="select">      
+    			<option value="Search">Select</option>
+    			@foreach($category as $c)
+    			<option value="{{$c->tittle}}">{{$c->tittle}}</option>
+    		    @endforeach
+    	    </select>
+
+            <input type="search" style="background-color:white;" name="quary" class="form-control fwNormal bdr" id="search" placeholder="Search"><button type="submit" class="sub-btn"><i class="fa fa-search"></i></button>
+        </fieldset>
+</form>
+     
+
+</div>
+
     <!-- login -->
-	  <div id="popup1" class="lightbox-demo text-left">
+	  <div id="loginpopup" class="lightbox-demo text-left">
 			<h4 class="heading5 text-uppercase">login</h4>
 			<!-- login form of the page -->
 			<form class="login-form text-center" method="post" action="{{url('user/login')}}">
@@ -512,6 +538,20 @@
 <script type="text/javascript">
 function Confirmation() {
 swal("Have a Good Meal!", "You Order is Placed!", "success");
+}
+</script>
+
+
+<!-- Search Bar -->
+<script>
+
+var slider = document.getElementById("select");
+var output = document.getElementById("search");
+// output.value = slider.value; // Display the default slider value
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+  output.value = this.value;
 }
 </script>
 

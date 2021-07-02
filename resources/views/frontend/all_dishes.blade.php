@@ -9,7 +9,7 @@
 		
 			<div class="space bg-black"></div>
 			<!-- banner of the page -->
-			<section class="banner bg-parallax " style="background-image:url({{url('/images/dish1.jpg')}});">
+			<section class="banner bg-parallax " style="background-image:url('/images/dish1.jpg');">
 				<div class="container">
 					<div class="row">
 						
@@ -40,6 +40,15 @@
 							</div>
 
 							@foreach($dish as $dishes)
+							<form method="post" action="{{url('add_to_cart')}}">
+						@csrf
+						<input type="hidden" name="dish_id" value="{{$dishes->dish_id}}">
+						<input type="hidden" name="dish_name" value="{{$dishes->dish_name}}">
+						<input type="hidden" name="dish_price" value="{{$dishes->price}}">
+						<input type="hidden" name="dish_image" value="{{$dishes->dish_image}}">
+						<input type="hidden" name="dish_price" value="{{$dishes->price}}">
+						<input type="hidden" name="dish_quantity" value="1">
+						
 							<div class="col-xs-12 col-sm-4">
 								<!-- feature col of the page -->
 								<div class="feature-col">
@@ -63,10 +72,19 @@
 										<li><a href="javascript:void(0);"><i class="fa fa-arrows-alt" aria-hidden="true"></i></a></li>
 										<li><a href="compare.html"><i class="fa fa-refresh" aria-hidden="true"></i></a></li>
 										<li><a href="wishlist.html"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-										<li><a href="shopping-cart.html"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+										<li>
+											<a href="">
+												<button type="submit">
+											<i class="fa fa-shopping-cart" aria-hidden="true">
+										    </i>
+										</button>  
+											</a>
+										</li>
 									</ul>
 								</div>
+
 							</div>
+						</form>
 							@endforeach
 							
 						</article>
@@ -83,50 +101,9 @@
 								</ul>
 							</section>
 							<!-- widget of the page -->
-							<section class="widget">
-								<h2 class="heading2 text-uppercase">shop by</h2>
-								<div class="price-range">
-									<span class="progress"><img src="{{url('/images/range-img.png')}}" alt="range img" class="img-responsive"></span>
-									<span class="text text-uppercase">price<span class="price fwBold">$20 - $100</span></span>
-									<a href="javascript:void(0);" class="btn-primary lg-round text-uppercase">filter</a>
-								</div>
-							</section>
+							
 							<!-- widget of the page -->
-							<section class="widget">
-								<h2 class="heading2 text-uppercase">colors</h2>
-								<ul class="list-unstyled color-list">
-									<li>
-										<a href="javascript:void(0);">
-											<h3 class="heading3 text-uppercase pull-left">red</h3>
-											<span class="view pull-right">(42)</span>
-										</a>
-									</li>
-									<li class="black">
-										<a href="javascript:void(0);">
-											<h3 class="heading3 text-uppercase pull-left">black</h3>
-											<span class="view pull-right">(28)</span>
-										</a>
-									</li>
-									<li class="blue">
-										<a href="javascript:void(0);">
-											<h3 class="heading3 text-uppercase pull-left">blue</h3>
-											<span class="view pull-right">(27)</span>
-										</a>
-									</li>
-									<li class="green">
-										<a href="javascript:void(0);">
-											<h3 class="heading3 text-uppercase pull-left">green</h3>
-											<span class="view pull-right">(43)</span>
-										</a>
-									</li>
-									<li class="yellow">
-										<a href="javascript:void(0);">
-											<h3 class="heading3 text-uppercase pull-left">yellow</h3>
-											<span class="view pull-right">(15)</span>
-										</a>
-									</li>
-								</ul>
-							</section>
+							
 							<!-- widget of the page -->
 							<section class="widget size-widget">
 								<h2 class="heading2 text-uppercase">sizes</h2>
